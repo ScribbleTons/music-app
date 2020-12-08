@@ -37,6 +37,15 @@ export default {
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
 
+    //target
+    // target: 'static',
+
+    server: {
+        port: 4000, // default: 3000
+        host: 'localhost', // default: localhost,
+        timing: false
+    },
+
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
     buildModules: [
         '@nuxtjs/fontawesome',
@@ -55,7 +64,7 @@ export default {
 
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
     axios: {
-        baseURL: 'http://localhost:4000',
+        baseURL: '/api/',
     },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -69,5 +78,10 @@ export default {
                 }
             });
         }
+    },
+
+    //server middleware
+    serverMiddleware: {
+        '/api': '~/api',
     }
 }

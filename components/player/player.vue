@@ -1,6 +1,6 @@
 <template>
-  <section v-if="allMusic">
-    <div class="container">
+  <section >
+    <div class="container" v-if="allMusic">
       <div class="row mb-5">
         <div class="col-md-12">
           <h3 class="text-center">Player</h3>
@@ -57,12 +57,14 @@
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </table>       
           </div>
         </div>
       </div>
     </div>
+    <div class="container m-10" v-else>No music on the list <nuxt-link to="/manager">add new song.</nuxt-link> </div>
   </section>
+  
 </template>
 
 <script>
@@ -89,8 +91,8 @@ export default {
           if(this.allMusic !== []){
               
               this.current = await this.allMusic[this.index]
-              this.player.src = `http://localhost:4000/${this.current.music.path}`;
-            //   this.player.play();
+              this.player.src = `/api/${this.current.music.path}`;
+              // this.player.play();
           }else{
               this.song = true
           }
@@ -114,15 +116,15 @@ export default {
       play(song){ 
           if(song){
               this.current = song;
-              this.player.src = `http://localhost:4000/${this.current.music.path}`;
+              this.player.src = `/api/${this.current.music.path}`;
               this.player.play();              
               this.isPlaying = true;
           }
       },
       playToggle(){
-          if(this.isPlaying === true){
-          this.player.pause();
+          if(this.player.play()){
           this.isPlaying = false;
+          this.player.pause();
           }else{
               this.player.play();
               this.isPlaying = true;

@@ -183,7 +183,7 @@ export default {
                 this.$axios.$post('/music', formData)
                             .then(res => {
                                 // console.log(res);
-                                this.isDisabled = false;
+                                // this.isDisabled = true;
                                 this.addLoading = false;
                                 this.musicDetails = {};
                                 this.getAllMusics();
